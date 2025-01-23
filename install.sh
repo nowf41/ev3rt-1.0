@@ -10,5 +10,5 @@ sudo bash ev3rt-prepare-ubuntu.sh
 
 
 # PATH
-echo "export PATH=\"$PATH:/opt/\"gcc-arm-none-eabi-6-2017-q1-update/bin" >> ~/.bashrc
+echo "export PATH=\"\$PATH:/opt/gcc-arm-none-eabi-6-2017-q1-update/bin\"" >> ~/.bashrc
 source ~/.bashrc
