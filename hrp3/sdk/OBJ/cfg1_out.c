@@ -3,7 +3,7 @@
 #include "kernel/kernel_int.h"
 #line 1 "../common/ev3api/ev3api.cfg"
 #include "api.cfg.h"
-#line 3 "../workspace/helloev3/app.cfg"
+#line 3 "../workspace/template/app.cfg"
 #include "app.h"
 
 #ifdef INT64_MAX
@@ -147,43 +147,18 @@ const unsigned_t TOPPERS_cfg_static_api_15 = 15;
 #line 7 "../common/app_common.cfg"
 const char * TOPPERS_cfg_valueof_modname_15 = (char *)("libc.a");
 
-#line 6 "../workspace/helloev3/app.cfg"
+#line 6 "../workspace/template/app.cfg"
 const unsigned_t TOPPERS_cfg_static_api_16 = 16;
 #define MAIN_TASK	(<>)
-#line 6 "../workspace/helloev3/app.cfg"
+#line 6 "../workspace/template/app.cfg"
 const unsigned_t TOPPERS_cfg_valueof_tskatr_16 = (unsigned_t)(TA_ACT);
-#line 6 "../workspace/helloev3/app.cfg"
-const signed_t TOPPERS_cfg_valueof_itskpri_16 = (signed_t)(TMIN_APP_TPRI);
-#line 6 "../workspace/helloev3/app.cfg"
+#line 6 "../workspace/template/app.cfg"
+const signed_t TOPPERS_cfg_valueof_itskpri_16 = (signed_t)(TMIN_APP_TPRI + 1);
+#line 6 "../workspace/template/app.cfg"
 const unsigned_t TOPPERS_cfg_valueof_stksz_16 = (unsigned_t)(STACK_SIZE);
 
-#line 7 "../workspace/helloev3/app.cfg"
+#line 9 "../workspace/template/app.cfg"
 const unsigned_t TOPPERS_cfg_static_api_17 = 17;
-#define BT_ECHO_TASK	(<>)
-#line 7 "../workspace/helloev3/app.cfg"
-const unsigned_t TOPPERS_cfg_valueof_tskatr_17 = (unsigned_t)(TA_NULL);
-#line 7 "../workspace/helloev3/app.cfg"
-const signed_t TOPPERS_cfg_valueof_itskpri_17 = (signed_t)(TMIN_APP_TPRI + 1);
-#line 7 "../workspace/helloev3/app.cfg"
-const unsigned_t TOPPERS_cfg_valueof_stksz_17 = (unsigned_t)(STACK_SIZE);
-
-#line 10 "../workspace/helloev3/app.cfg"
-const unsigned_t TOPPERS_cfg_static_api_18 = 18;
-#line 10 "../workspace/helloev3/app.cfg"
-const char * TOPPERS_cfg_valueof_modname_18 = (char *)("app.o");
-
-#line 11 "../workspace/helloev3/app.cfg"
-const unsigned_t TOPPERS_cfg_static_api_19 = 19;
-#line 11 "../workspace/helloev3/app.cfg"
-const char * TOPPERS_cfg_valueof_modname_19 = (char *)("cli_main.o");
-
-#line 12 "../workspace/helloev3/app.cfg"
-const unsigned_t TOPPERS_cfg_static_api_20 = 20;
-#line 12 "../workspace/helloev3/app.cfg"
-const char * TOPPERS_cfg_valueof_modname_20 = (char *)("cli_motor.o");
-
-#line 13 "../workspace/helloev3/app.cfg"
-const unsigned_t TOPPERS_cfg_static_api_21 = 21;
-#line 13 "../workspace/helloev3/app.cfg"
-const char * TOPPERS_cfg_valueof_modname_21 = (char *)("cli_sensor.o");
+#line 9 "../workspace/template/app.cfg"
+const char * TOPPERS_cfg_valueof_modname_17 = (char *)("app.o");
 

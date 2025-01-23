@@ -1,0 +1,6 @@
+{
+    "files.associations": {
+        "ev3api.h": "c",
+        "t_syslog.h": "c"
+    }
+}
