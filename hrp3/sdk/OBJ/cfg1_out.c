@@ -3,7 +3,7 @@
 #include "kernel/kernel_int.h"
 #line 1 "../common/ev3api/ev3api.cfg"
 #include "api.cfg.h"
-#line 3 "../workspace/template/app.cfg"
+#line 3 "../workspace/wro2025/app.cfg"
 #include "app.h"
 
 #ifdef INT64_MAX
@@ -147,18 +147,18 @@ const unsigned_t TOPPERS_cfg_static_api_15 = 15;
 #line 7 "../common/app_common.cfg"
 const char * TOPPERS_cfg_valueof_modname_15 = (char *)("libc.a");
 
-#line 6 "../workspace/template/app.cfg"
+#line 6 "../workspace/wro2025/app.cfg"
 const unsigned_t TOPPERS_cfg_static_api_16 = 16;
 #define MAIN_TASK	(<>)
-#line 6 "../workspace/template/app.cfg"
+#line 6 "../workspace/wro2025/app.cfg"
 const unsigned_t TOPPERS_cfg_valueof_tskatr_16 = (unsigned_t)(TA_ACT);
-#line 6 "../workspace/template/app.cfg"
+#line 6 "../workspace/wro2025/app.cfg"
 const signed_t TOPPERS_cfg_valueof_itskpri_16 = (signed_t)(TMIN_APP_TPRI + 1);
-#line 6 "../workspace/template/app.cfg"
+#line 6 "../workspace/wro2025/app.cfg"
 const unsigned_t TOPPERS_cfg_valueof_stksz_16 = (unsigned_t)(STACK_SIZE);
 
-#line 9 "../workspace/template/app.cfg"
+#line 9 "../workspace/wro2025/app.cfg"
 const unsigned_t TOPPERS_cfg_static_api_17 = 17;
-#line 9 "../workspace/template/app.cfg"
+#line 9 "../workspace/wro2025/app.cfg"
 const char * TOPPERS_cfg_valueof_modname_17 = (char *)("app.o");
 
