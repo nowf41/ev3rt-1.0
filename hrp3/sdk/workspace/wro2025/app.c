@@ -1,51 +1,43 @@
 #include "ev3api.h"
+
 #include "app.h"
 #include "ports.h"
 
-void main_task(intptr_t unused) {
+#include <stdio.h>
+#include <stdbool.h>
+
+void main_task(intptr_t unused) { 
     init_ports();
-    lock_crane();
-    
-    turn(-45);
-    straight_mm(400);
-    turn(-45);
-    straight_mm(450);
-    turn(-90);
-    raise_percent(-100); // 0
-    straight_mm(150);
 
-    raise_percent(50); // 50
-    straight_mm(100);
-    // the case has been opened.
-    straight_mm(-170);
-    raise_percent_no_sync(0); // 55
+    cos_speeding_straight(0, 50, 3000);
+    // from
+    cos_speeding_straight(50, 0, 3000);
+    // fin
+    // 0xdeefbeef will begin in this.
+
+    return;
+
+    straight_until_black(50, false, true);
     turn(-90);
-    straight_mm(420);
-    turn(90);
-    straight_mm(100);
-    // now: tank
-    grab();
-    raise_percent_no_sync(45); // 100
-    straight_mm(-100);
-    turn(100);
-    straight_mm(400);
-    turn(-90);
-    straight_mm(200);
-    raise_percent_no_sync(-30); // 70
+    straight_until_black(50, true, false);
     tslp_tsk(500 * 1000);
-    release();
-    
-    raise_percent_no_sync(30); // 100
-    tslp_tsk(1000 * 1000);
-    straight_mm(-100);
+    straight_until_black(50, true, true);
+    turn(-90);
+    straight_until_black(50, false, true);
+    raise_percent_no_sync(50);
+    straightInfinity();
+    tslp_tsk(500 * 1000);
+    stop_both();
 
-    release();
+}
 
-    raise_percent(-100); // 0
-    ev3_motor_rotate(FINGER, -180, 100, true);
-    straight_mm(80);
+void straight_until_black(int d, int white, int brake) {
+    int deg = d * 360 / (TIRE_RADIUS * PI);
 
-    raise_percent(100);
+    cos_speeding_straight(0, 40, deg);
+    if (white) while (ev3_color_sensor_get_reflect(GROUND_COLOR) < 70); // detect white
+    while (ev3_color_sensor_get_reflect(GROUND_COLOR) > 40); // detect black
+    if (brake) cos_speeding_straight(40, 0, deg);
 }
 
 void init_ports() {
@@ -54,32 +46,11 @@ void init_ports() {
     ev3_motor_config(CRANE, CRANE_TYPE);
     ev3_motor_config(FINGER, FINGER_TYPE);
     ev3_sensor_config(GYRO, GYRO_TYPE);
-    ev3_sensor_config(GATE_COLOR, GATE_COLOR_TYPE);
-    ev3_sensor_config(LEFT_COLOR, LEFT_COLOR_TYPE);
-    ev3_sensor_config(RIGHT_COLOR, RIGHT_COLOR_TYPE);
-    ev3_sensor_config(GATE_COLOR, GATE_COLOR_TYPE);
-}
-
-void straight_deg(int deg) {
-    ev3_motor_rotate(LEFT_MOTOR, deg, BASE_SPEED, false);
-    ev3_motor_rotate(RIGHT_MOTOR, deg, BASE_SPEED, true);
-    ev3_motor_stop(LEFT_MOTOR, true);
-    ev3_motor_stop(RIGHT_MOTOR, true);
-    
-}
-
-void straightInfinity() {
-    ev3_motor_set_power(LEFT_MOTOR, 50);
-    ev3_motor_set_power(RIGHT_MOTOR, 50);
-}
-
-void stop_both() {
-    ev3_motor_stop(LEFT_MOTOR, true);
-    ev3_motor_stop(RIGHT_MOTOR, true);
-}
-
-void straight_mm(int mm) {
-    straight_deg((int)(((float)mm) / (TIRE_RADIUS * PI) * 360.0f));
+    ev3_sensor_config(GROUND_COLOR, GATE_COLOR_TYPE);
+    //ev3_sensor_config(LEFT_COLOR, LEFT_COLOR_TYPE);
+    //ev3_sensor_config(RIGHT_COLOR, RIGHT_COLOR_TYPE);
+    ev3_sensor_config(GROUND_COLOR, GATE_COLOR_TYPE);
+    ev3_lcd_set_font(EV3_FONT_MEDIUM);
 }
 
 // rotates-control-based turn
@@ -115,33 +86,8 @@ int abs(int val) {
     }
 }
 
-void raise_percent(int per) {
-    ev3_motor_rotate(CRANE, -3 * per, 100, true);
-    ev3_motor_stop(CRANE, true);
-}
-
-void raise_percent_no_sync(int per) {
-    ev3_motor_rotate(CRANE, -3 * per, 100, false);
-}
-
-void lock_crane() {
-    ev3_motor_stop(CRANE, true);
-}
-
-void unlock_crane() {
-    ev3_motor_stop(CRANE, false);
-}
-
-// MUST BE FULLY OPENED BEFORE CALLING THIS
-void grab() {
-    // -100 1s
-    ev3_motor_set_power(FINGER, -100);
-    tslp_tsk(1000 * 1000);
-}
-
-void release() {
-    ev3_motor_stop(FINGER, true);
-    ev3_motor_set_power(FINGER, 100);
-    tslp_tsk(1000 * 1000);
-    ev3_motor_stop(FINGER, true);
+int get_ms() {
+    SYSTIM tmp;
+    get_tim(&tmp);
+    return (int)(tmp/1000);
 }

@@ -1,1 +1,1 @@
-APPPL_COBJS += 
+APPL_COBJS += arm.o cos_control.o rect_control.o

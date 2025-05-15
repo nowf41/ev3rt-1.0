@@ -1,6 +1,10 @@
 {
     "files.associations": {
+        "*.workspace": "makefile",
         "ev3api.h": "c",
-        "t_syslog.h": "c"
+        "t_syslog.h": "c",
+        "app.h": "c",
+        "stdio.h": "c",
+        "stdbool.h": "c"
     }
 }

@@ -1,6 +1,7 @@
 #ifndef PORTS_H
 #define PORTS_H
 
+
 // === PORTS ===
 #define LEFT_MOTOR EV3_PORT_A
 #define RIGHT_MOTOR EV3_PORT_D
@@ -14,7 +15,7 @@
 
 #define LEFT_COLOR EV3_PORT_2
 #define RIGHT_COLOR EV3_PORT_3
-#define GATE_COLOR EV3_PORT_4
+#define GROUND_COLOR EV3_PORT_2
 #define GYRO EV3_PORT_1
 
 #define LEFT_COLOR_TYPE COLOR_SENSOR
@@ -34,6 +35,6 @@
 #define TURN_BASE_SPEED 10
 
 // === GENERAL ===
-#define PI 3.14f // float
+#define PI 3.1415f // float
 
 #endif /* PORTS_H */
