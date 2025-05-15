@@ -8,7 +8,11 @@
 // UNTESTED START
 
 float cos_control_func(float s_min, float s_max, float x, float t) {
+    if(s_min > s_max) return cos_control_func_inv(s_max, s_min, x, t);
     return (s_max - s_min) * (cos(x * PI / t - PI) + 1) / 2 + s_min;
+}
+float cos_control_func_inv(float s_min, float s_max, float x, float t) {
+    return (s_max - s_min) * (cos((t-x) * PI / t - PI) + 1) / 2 + s_min;
 }
 
 /// this function requires each motor's speed is already set to s_min
